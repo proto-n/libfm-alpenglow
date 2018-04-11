@@ -1,0 +1,3 @@
+[submodule "libfm_with_BPR"]
+	path = libfm_with_BPR
+	url = https://github.com/fabiopetroni/libfm_with_BPR.git
