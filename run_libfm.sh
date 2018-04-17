@@ -4,8 +4,8 @@ export threads=10
 export calculate_lists_per_thread=50
 
 export dim=20
-export iter=10
-export neg_sample=10
+export iter=20
+export neg_sample=30
 export learn_rate=0.05
 export regular=0.001
 export top_k=100
@@ -46,7 +46,7 @@ calculate_for_ids(){
 export -f calculate_for_ids
 
 pushd batches
-for d in $(echo */ | tr " " "\n" |  tail -n+34); do
+for d in $(echo */ | tr " " "\n"); do
 	pushd $d
 	echo calculating toplists for $d
 	cat test_users.txt | \
@@ -59,7 +59,7 @@ for d in $(echo */ | tr " " "\n" |  tail -n+34); do
 		fb=$(basename $f)
 		fbt=${fb%.dat}
 		# user position item
-		awk "{print $fbt,NR,\$1}" $f
+		awk "{print $fbt,\$1,NR}" $f
 	done >> run/ranks.dat
 
 	popd

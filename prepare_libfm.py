@@ -22,6 +22,7 @@ for i in range(1, 53):
     pd.Series([1]).to_csv("batches/batch_%d_prepared/test.libfm" % i, header=False, index=False)
 
     test_users = pd.read_csv("batches/batch_%d_test.dat" % i)
+    test_users = test_users[test_users.user.isin(batch.user)]
     pd.DataFrame(
         test_users.user.unique()
     ).to_csv("batches/batch_%d_prepared/test_users.txt" % i, index=False, header=False, line_terminator=" ")
